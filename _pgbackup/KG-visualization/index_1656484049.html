@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <style>* { margin: 0; padding: 0; } .container { height: 70px; width: 50%; margin: 100px auto 0 auto; } .parent { position: relative; } .search { width: 100%; height: 40px; border-radius: 18px; outline: none; border: 1px solid #ccc; padding-left: 20px; position: absolute; } .button { height: 35px; width: 35px; position: absolute;  /* background: url("./images/topbar.png") no-repeat -2px -99px; */ background: url("./images/search.png") no-repeat center center; background-size: 100% 100%;  /* background: #CCC no-repeat -2px -99px; */ top: 4px;  /* left: 285px; */ right: 0px;  /* left: 500px; */ border: none; outline: none; cursor: pointer; }</style>
+        <link href="../bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="container">
+            <form action="" class="parent">
+                <input type="text" class="form-control" style="display: none;"/>
+                <input type="text" id="searchBar" class="search" placeholder="Search node" onkeydown="searchBarOnKeyDown(event)"/>
+                <input type="button" id="searchButton" class="button" onclick="searchButtonOnClick()"/>
+            </form>
+        </div>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="graph2.js"></script>
+        <script src="render.js"></script>
+        <script src="callbacks.js"></script>
+    </body>
+    <nav class="bg-dark border-1 navbar navbar-expand-lg navbar-light pb-3 pt-3 shadow-none"> 
+        <div class="border-dark bottom-0 container-sm end-0 start-0 top-0"> <a class="align-items-center d-inline-flex fw-bold h4 lh-1 mb-0 navbar-brand text-secondary text-uppercase" href="#"> <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="2em" xml:space="preserve" fill="currentColor" viewBox="0 0 24 24" height="2em" class="me-1 text-primary">
+                    <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-14.243L7.757 12 12 16.243 16.243 12 12 7.757z"></path>
+                </svg><span class="text-white">Fintech HKUST</span></a> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown-2" aria-controls="navbarNavDropdown-2" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> 
+            </button>             
+            <div class="collapse navbar-collapse" id="navbarNavDropdown-2"> 
+                <ul class="ms-auto navbar-nav"> 
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white" aria-current="page" href="../fintech.html">Home</a> 
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white" href="#">About</a> 
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white" href="#">FinKG</a> 
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white" href="../datasource.html">Data Sources</a> 
+                    </li>
+                    <li class="nav-item"> <a class="active nav-link p-lg-3 text-white" href="../demo.html">Demo</a> 
+                    </li>                     
+                </ul><a class="btn btn-primary ms-lg-3 pe-4 ps-4" href="#">Contact US</a> 
+            </div>             
+        </div>         
+    </nav>
+</html>

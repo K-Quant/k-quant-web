@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="blocks.css"/>
+    <link href="style.css" rel="stylesheet"/>
+    <title>K-Quant</title>
+</head>
+<body class="text-muted">
+<header>
+    <nav class="bg-dark border-1 navbar navbar-expand-lg navbar-light pb-3 pt-3 shadow-none text-muted">
+        <div class="border-dark bottom-0 container-sm end-0 start-0 top-0">
+            <a class="align-items-center d-inline-flex fw-bold h4 lh-1 mb-0 navbar-brand text-secondary text-uppercase" href="#">
+                <img src="../UST.jpg" width="30" class="bg-light"/><span class="text-white">&nbsp; K-Quant HKUST</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown-2" aria-controls="navbarNavDropdown-2" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown-2">
+                <ul class="ms-auto navbar-nav">
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" aria-current="page" href="fintech.html">Home</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="./KG-visualization/kgQuery.html">FinKG Query</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="./KG-visualization/demo.html">FinKG Update</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="datasource.html">Data Sources</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="http://47.97.83.36:5000/docs">APIs</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="demo.html">K-Quant</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="future.html">More Information</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container" style="text-align: center">
+        <h1 class="display-5 fw-bold text-black-50" style="margin-top: 40px">Two Week Update Performance</h1>
+        <table style="background-color: white;border: 1px solid gray;width: 100%;line-height: 40px;">
+            <thead>
+            <tr style="border: 1px solid gray;">
+                <th style="border: 1px solid gray;"></th>
+                <th style="border: 1px solid gray;">Full Retrain</th>
+                <th style="border: 1px solid gray;">Incremental Update</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border: 1px solid gray;">Accuracy</td>
+                <td style="border: 1px solid gray;">61.37%</td>
+                <td style="border: 1px solid gray;">54.92%</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid gray;">Return Ratio</td>
+                <td style="border: 1px solid gray;">15.5</td>
+                <td style="border: 1px solid gray;">14.1</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid gray;">Total Time(s)</td>
+                <td style="border: 1px solid gray;">2866</td>
+                <td style="border: 1px solid gray;">2128</td>
+            </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center">
+            <h1 class="display-5 fw-bold text-black-50" style="margin-top: 40px">Parameter difference between approaches</h1>
+            <table style="background-color: white;border: 1px solid gray;width: 100%;line-height: 40px;">
+                <thead>
+                <tr class="table-head">
+                    <th></th>
+                    <th colspan="3" style="border: gray solid 1px">initial</th>
+                    <th colspan="3" style="border: gray solid 1px">inc</th>
+                    <th colspan="3" style="border: gray solid 1px">full</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-body">
+                    <td rowspan="3" style="border: 1px solid gray;">KGE</td>
+                    <td>0.452</td>
+                    <td>0.929</td>
+                    <td style="border-right: 1px solid gray;">0.543</td>
+                    <td>0.692</td>
+                    <td>0.902</td>
+                    <td style="border-right: 1px solid gray;">0.771</td>
+                    <td>0.719</td>
+                    <td>0.082</td>
+                    <td>0.684</td>
+                </tr>
+                <tr>
+                    <td>0.845</td>
+                    <td>0.363</td>
+                    <td style="border-right: 1px solid gray;">0.54</td>
+                    <td>0.868</td>
+                    <td>0.642</td>
+                    <td style="border-right: 1px solid gray;">0.817</td>
+                    <td>0.069</td>
+                    <td>0.837</td>
+                    <td>0.832</td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 1px solid gray;">0.599</td>
+                    <td style="border-bottom: 1px solid gray;">0.888</td>
+                    <td style="border-right: 1px solid gray;border-bottom: 1px solid gray;">0.789</td>
+                    <td style="border-bottom: 1px solid gray;">0.764</td>
+                    <td style="border-bottom: 1px solid gray;">0.798</td>
+                    <td style="border-right: 1px solid gray;border-bottom: 1px solid gray;">0.892</td>
+                    <td style="border-bottom: 1px solid gray;">0.496</td>
+                    <td style="border-bottom: 1px solid gray;">0.269</td>
+                    <td style="border-bottom: 1px solid gray;">0.31</td>
+                </tr>
+                <tr>
+                    <td rowspan="3" style="border: 1px solid gray;">Time</td>
+                    <td>0.242</td>
+                    <td>0.101</td>
+                    <td style="border-right: 1px solid gray;">0.235</td>
+                    <td>0.481</td>
+                    <td>0.112</td>
+                    <td style="border-right: 1px solid gray;">0.535</td>
+                    <td>0.716</td>
+                    <td>0.032</td>
+                    <td>0.899</td>
+                </tr>
+                <tr>
+                    <td>0.953</td>
+                    <td>0.733</td>
+                    <td style="border-right: 1px solid gray;">0.712</td>
+                    <td>0.715</td>
+                    <td>0.472</td>
+                    <td style="border-right: 1px solid gray;">0.833</td>
+                    <td>0.714</td>
+                    <td>0.783</td>
+                    <td>0.364</td>
+                </tr>
+                <tr>
+                    <td>0.645</td>
+                    <td>0.898</td>
+                    <td style="border-right: 1px solid gray;">0.393</td>
+                    <td>0.347</td>
+                    <td>0.835</td>
+                    <td style="border-right: 1px solid gray;">0.458</td>
+                    <td>0.895</td>
+                    <td>0.189</td>
+                    <td>0.194</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container pt-4">
+        <p class="lead mb-4 pe-sm-5">Full retrain inputs 1723 nodes, incremental update inputs 895 nodes
+    </div>
+
+
+</main>
+<script src="assets/js/popper.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+

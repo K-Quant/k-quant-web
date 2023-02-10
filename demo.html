@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="blocks.css"/>
+        <link href="style.css" rel="stylesheet"/>
+        <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <title>K-Quant</title>
+    </head>
+    <body class="text-muted">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light pb-3 pt-3 shadow-none"> 
+                <div class="container"> <a class="align-items-center d-inline-flex fw-bold h4 lh-1 mb-0 navbar-brand text-secondary text-uppercase" href="#"> <img src="./images/UST.jpg" width="30"/><span>&nbsp; K-Quant HKUST</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown-2" aria-controls="navbarNavDropdown-2" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> 
+                    </button>                     
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown-2"> 
+                        <ul class="ms-auto navbar-nav"> 
+                            <li class="nav-item"> <a class="nav-link p-lg-3" aria-current="page" href="fintech.html">Home</a> 
+                            </li>
+                            <li class="nav-item"> <a class="nav-link p-lg-3" href="./KG-visualization/kgQuery.html">FinKG Query</a>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link p-lg-3" href="./KG-visualization/demo.html">FinKG Update</a>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link p-lg-3" href="datasource.html">Data Sources</a> 
+                            </li>
+                            <li class="nav-item"> <a class="nav-link p-lg-3" href="http://143.89.126.53:8001/docs">APIs</a>
+                    </li>
+                            <li class="nav-item"> <a class="active nav-link p-lg-3" href="demo.html">K-Quant</a>
+                        </li>
+		                    <li class="nav-item"> <a class="nav-link p-lg-3" href="future.html">More Information</a>
+                            </li>
+                        </ul>
+                    </div>                     
+                </div>                 
+            </nav>
+        </header>
+        <main>
+            <section class="bg-secondary pb-5 pt-5 text-white-50">
+                <div class="container pb-5 position-relative pt-5">
+                    <div class="align-items-center gy-4 row">
+                        <div class="col-lg-12">
+                            <h1 class="display-3 fw-bold text-white">Your Personal Financial Advisor</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="col-md-4">
+</div>
+	           <div style="text-align: center;margin: 20px 0;">
+                <img src="./images/img-clear.png" style="width: 40%;"/>
+            </div>
+            <div class="container">
+             
+                                <div class="mb-3">Please choose modeling method<br/>
+                    <select class="form-control" list="datalistOptions33" id="form_model" placeholder="Type to search...">
+                        <option value="without alternative data">without alternative data(single input)</option>
+                        <option value="with alternative data">with alternative data(multi input)</option>
+                    </select>
+                </div>
+                <div class="mb-3">Please choose stock for prediction<br/>
+                    <input class="form-control" list="datalistOptions1" id="form_stock" placeholder="Type to search..."/>
+                    <datalist id="datalistOptions1">
+                        <option value="600053.SH 600061.SH 000078.SZ 600640.SH 600183.SH"></option>
+			<option value="600053.SH 000545.SZ 000548.SZ 000561.SZ 000739.SZ"></option>
+			<option value="000596.SZ 600061.SH 600183.SH"></option>
+			<option value="000016.SZ"></option>
+			<option value="600053.SH"></option>
+                    </datalist>                     
+                </div>
+                <div class="mb-3">Please choose start time<br/>
+                    <input class="form-control" list="datalistOptions2" id="form_start_time" placeholder="Type to search..."/>
+                    <datalist id="datalistOptions2">
+                        <option value="20190603"></option>
+                    </datalist>
+                </div>
+                <div class="mb-3">Please choose end time<br/>
+                    <input class="form-control" list="datalistOptions3" id="form_end_time" placeholder="Type to search..."/>
+                    <datalist id="datalistOptions3">
+                        <option value="20200610"></option>
+                    </datalist>
+                </div>
+                <a class="btn btn-primary ms-lg-3 pe-4 ps-4" id="btn" onclick="submit()">Do Prediction</a>
+		                <h1 class="display-5 fw-bold text-black-50" style="margin-top: 40px">Performance Comparison</h1>
+                <div style="text-align: center">
+                    <table style="background-color: white;border: 1px solid gray;width: 100%;line-height: 40px;" >
+                        <tr class="table-head" >
+                            <th align="center" valign="middle" style="width: 250px"></th>
+                            <th align="center" valign="middle" class="th-black">Stock pool 1</th>
+                            <th align="center" valign="middle">Stock pool 2</th>
+                            <th align="center" valign="middle">Stock pool 3</th>
+                            <th align="center" valign="middle">Stock pool 4</th>
+                            <th align="center" valign="middle">Stock pool 5</th>
+                            <th align="center" valign="middle">Average</th>
+                        </tr>
+                        <tr class="table-body" style="font-weight: bolder">
+                            <th align="center" valign="middle" >Multi input Return Ratio</th>
+                            <th align="center" valign="middle" style="font-weight: normal">+8.8%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">+1.9%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">+36.3%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">+3.4%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">+23.3%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">+14.4%</th>
+                        </tr>
+                        <tr class="table-body" style="font-weight: bolder">
+                            <th align="center" valign="middle">Single input Return Ratio</th>
+                            <th align="center" valign="middle" style="font-weight: normal">-1.2%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">-1.1%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">+20.6%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">-1.1%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">-1.2%</th>
+                            <th align="center" valign="middle" style="font-weight: normal">+3.2%</th>
+                        </tr>
+                        <tr class="table-body" style="font-weight: bolder">
+                            <th align="center" valign="middle">Performance Gain</th>
+                            <th align="center" valign="middle" style="font-weight: bolder">10.0%</th>
+                            <th align="center" valign="middle" style="font-weight: bolder">3.0%</th>
+                            <th align="center" valign="middle" style="font-weight: bolder">15.7%</th>
+                            <th align="center" valign="middle" style="font-weight: bolder">4.5%</th>
+                            <th align="center" valign="middle" style="font-weight: bolder">24.5%</th>
+                            <th align="center" valign="middle" style="font-weight: bolder">11.2%</th>
+                        </tr>
+                    </table>
+                </div>
+                <h1 class="display-5 fw-bold text-black-50" style="margin-top: 40px">Incremental update of FinKG data
+                </h1>
+                <div class="mb-3" style="margin-top: 50px">Please choose KG update time interval<br/>
+                    <select class="form-control" list="days-list" id="form_days" placeholder="Type to search...">
+                        <option value="one week">one week</option>
+                        <option value="two weeks">two weeks</option>
+                    </select>
+                </div>
+                <a class="btn btn-primary ms-lg-3 pe-4 ps-4" id="btn-week" onclick="updateWeek()">Do Update</a>
+                <div id="old_graph" style="height: 800px;text-align: center">
+                    <h4 class="text-black-50 pb-5">Original FinKG Data</h4>
+                </div>
+                <div id="new_graph"style="height: 800px;text-align: center">
+                    <h4 class="text-black-50">Updated FinKG Data</h4>
+                </div>
+                <div style="display: flex;justify-content: space-between;height: 900px">
+
+
+                </div>
+<!--            <div class="mb-3">-->
+<!--                <datalist id="datalistOptions">-->
+<!--                    <option value="San Francisco">-->
+<!--</option>-->
+<!--                    <option value="New York">-->
+<!--</option>-->
+<!--                    <option value="Seattle">-->
+<!--</option>-->
+<!--                    <option value="Los Angeles">-->
+<!--</option>-->
+<!--                    <option value="Chicago">-->
+<!--</option>-->
+<!--                </datalist>-->
+<!--            </div>-->
+            </div>
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="160" class="bg-white d-block text-secondary">
+                <path d="M 100 100 V 20 L 0 100"></path>
+                <path d="M 100 100 V 0 L 0 100" opacity="0.5"></path>
+            </svg>
+            <div class="bg-secondary">
+                <div class="container pb-1 pt-1">
+                    <div class="col-9 col-lg-4 me-auto ms-auto"> 
+</div>
+                </div>
+            </div>
+
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="160" class="bg-secondary d-block text-dark">
+                <path d="M 100 100 V 20 L 0 100"></path>
+                <path d="M 100 100 V 0 L 0 100" opacity="0.5"></path>
+            </svg>
+
+                <footer class="bg-dark pt-5 text-white">
+                <div class="container"> 
+                    <div class="row"> 
+                        <div class="col-xl-4 py-3"> <a class="align-items-center d-inline-flex fw-bold h3 lh-1 link-primary mb-4 text-decoration-none text-uppercase" href="#"> <img src="./images/UST.jpg" width="40" class="bg-light"/><span class="text-light">&nbsp; FINTECH HKUST</span></a>
+                            <div class="mb-4">
+                                <p class="text-white">This project is supported by Ministry of Science and Technology of the People´s Republic of China (MOST.GOV) and under development among HKUST-SJTU.</p>
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                    <div class="pb-3 pt-3"> 
+                        <hr class="border-secondary mt-0"/> 
+                        <div class="align-items-center row">
+                            <div class="col-md pb-2 pt-2">
+                                <p class="mb-0">&copy; 2002 - 2022. All Rights Reserved - HKUST</p>
+                            </div>
+                            <div class="col-md-auto pb-2 pt-2">
+                                <a href="#" class="text-primary">Privacy Policy</a> | <a href="#" class="text-primary">Terms of Use</a>
+                            </div>
+                        </div>                         
+                    </div>                     
+                </div>                 
+            </footer>
+
+        </main>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        <script>
+            let one_week_new_links = [{"source": "300323.SZ", "target": "600703.SH"},
+                {"source": "600703.SH", "target": "603986.SH"}, {"source": "600703.SH", "target": "600184.SH"}, {"source": "600703.SH", "target": "002371.SZ"}, {"source": "600703.SH", "target": "000725.SZ"}, {"source": "600703.SH", "target": "300041.SZ"}, {"source": "000725.SZ", "target": "300296.SZ"}, {"source": "000725.SZ", "target": "300940"}, {"source": "002371.SZ", "target": "002185.SZ"}, {"source": "002371.SZ", "target": "300782.SZ"}, {"source": "300323.SZ", "target": "600184.SH"}, {"source": "000725.SZ", "target": "300545.SZ"}, {"source": "300782.SZ", "target": "603738.SH"}, {"source": "601238.SH", "target": "000725.SZ"}, {"source": "000725.SZ", "target": "002819.SZ"}, {"source": "300296.SZ", "target": "002539.SZ"}, {"source": "603986.SH", "target": "603501.SH"}, {"source": "601238.SH", "target": "601633.SH"}, {"source": "603986.SH", "target": "300671.SZ"}, {"source": "601633.SH", "target": "000898.SZ"}, {"source": "002049.SZ", "target": "603501.SH"}, {"source": "601633.SH", "target": "002708.SZ"}, {"source": "300041.SZ", "target": "002563.SZ"}, {"source": "600727.SH", "target": "002539.SZ"}, {"source": "002538.SZ", "target": "600727.SH"}, {"source": "002563.SZ", "target": "600398.SH"}]
+            let one_week_old_links = [{"source": "300323.SZ", "target": "600703.SH"},
+                {"source": "600703.SH", "target": "603986.SH"},
+                {"source": "600703.SH", "target": "600184.SH"},
+                {"source": "600703.SH", "target": "002371.SZ"},
+                {"source": "600703.SH", "target": "000725.SZ"},
+                {"source": "600703.SH", "target": "300041.SZ"},
+                {"source": "000725.SZ", "target": "300940"},
+                {"source": "002371.SZ", "target": "002185.SZ"},
+                {"source": "002371.SZ", "target": "300782.SZ"},
+                {"source": "300323.SZ", "target": "600184.SH"}, {"source": "000725.SZ", "target": "300545.SZ"}, {"source": "300782.SZ", "target": "603738.SH"}, {"source": "601238.SH", "target": "000725.SZ"}, {"source": "000725.SZ", "target": "002819.SZ"}, {"source": "300296.SZ", "target": "002539.SZ"}, {"source": "603986.SH", "target": "603501.SH"}, {"source": "601238.SH", "target": "601633.SH"}, {"source": "603986.SH", "target": "300671.SZ"}, {"source": "002049.SZ", "target": "603501.SH"}, {"source": "601633.SH", "target": "002708.SZ"}, {"source": "300041.SZ", "target": "002563.SZ"}, {"source": "600727.SH", "target": "002539.SZ"}, {"source": "002538.SZ", "target": "600727.SH"}]
+
+            let two_week_old_links = [
+                {"date": "2021-09-02 20:30:15", "source": "688339", "target": "600066.SH", "key": 0},
+                {"date": "2021-09-02 20:30:15", "source": "688339", "target": "600066.SH", "key": 1},
+                {"date": "2022-02-10 23:57:14", "source": "600030.SH", "target": "600066.SH", "key": 0},
+                {"date": "2022-02-10 23:57:14", "source": "600030.SH", "target": "600066.SH", "key": 1},
+                {"date": "2021-08-11 13:42:00", "source": "301039", "target": "600066.SH", "key": 0},
+                {"date": "2021-08-11 13:42:00", "source": "301039", "target": "600066.SH", "key": 1},
+                {"date": "2021-08-16 07:30:10", "source": "600066.SH", "target": "603658.SH", "key": 0},
+                {"date": "2021-08-16 07:30:10", "source": "600066.SH", "target": "603658.SH", "key": 1},
+                {"date": "2021-12-07 10:58:00", "source": "600066.SH", "target": "000625.SZ", "key": 0},
+                {"date": "2021-12-07 10:58:00", "source": "600066.SH", "target": "000625.SZ", "key": 1},
+                {"date": "2021-12-07 11:27:22", "source": "600066.SH", "target": "000625.SZ", "key": 2},
+                {"date": "2021-12-07 11:27:22", "source": "600066.SH", "target": "000625.SZ", "key": 3},
+                {"date": "2021-12-07 13:01:26", "source": "600066.SH", "target": "000625.SZ", "key": 4},
+                {"date": "2021-12-07 13:01:26", "source": "600066.SH", "target": "000625.SZ", "key": 5},
+                {"date": "2022-02-04 17:47:09", "source": "600066.SH", "target": "600166.SH", "key": 0},
+                {"date": "2022-02-04 17:47:09", "source": "600066.SH", "target": "600166.SH", "key": 1},
+                {"date": "2022-02-06 05:37:49", "source": "600066.SH", "target": "600166.SH", "key": 2},
+                {"date": "2022-02-06 05:37:49", "source": "600066.SH", "target": "600166.SH", "key": 3},
+                {"date": "2022-02-06 05:48:12", "source": "600066.SH", "target": "600166.SH", "key": 4},
+                {"date": "2022-02-06 05:48:12", "source": "600066.SH", "target": "600166.SH", "key": 5},
+                {"date": "2022-02-06 11:11:06", "source": "600066.SH", "target": "600166.SH", "key": 6},
+                {"date": "2022-02-06 11:11:06", "source": "600066.SH", "target": "600166.SH", "key": 7},
+                {"date": "2022-02-10 23:57:14", "source": "600066.SH", "target": "601231.SH", "key": 0},
+                {"date": "2022-02-10 23:57:14", "source": "600066.SH", "target": "601231.SH", "key": 1}]
+
+            let two_week_new_links = [{"date": "2021-09-02 20:30:15", "source": "688339", "target": "600066.SH", "key": 0},
+                {"date": "2021-09-02 20:30:15", "source": "688339", "target": "600066.SH", "key": 1},
+                {"date": "2022-02-10 23:57:14", "source": "600030.SH", "target": "600066.SH", "key": 0},
+                {"date": "2022-02-10 23:57:14", "source": "600030.SH", "target": "600066.SH", "key": 1},
+                {"date": "2021-08-11 13:42:00", "source": "301039", "target": "600066.SH", "key": 0},
+                {"date": "2021-08-11 13:42:00", "source": "301039", "target": "600066.SH", "key": 1},
+                {"date": "2021-08-16 07:30:10", "source": "600066.SH", "target": "603658.SH", "key": 0},
+                {"date": "2021-08-16 07:30:10", "source": "600066.SH", "target": "603658.SH", "key": 1},
+                {"date": "2021-12-07 10:58:00", "source": "600066.SH", "target": "000625.SZ", "key": 0},
+                {"date": "2021-12-07 10:58:00", "source": "600066.SH", "target": "000625.SZ", "key": 1},
+                {"date": "2021-12-07 11:27:22", "source": "600066.SH", "target": "000625.SZ", "key": 2},
+                {"date": "2021-12-07 11:27:22", "source": "600066.SH", "target": "000625.SZ", "key": 3},
+                {"date": "2021-12-07 13:01:26", "source": "600066.SH", "target": "000625.SZ", "key": 4},
+                {"date": "2021-12-07 13:01:26", "source": "600066.SH", "target": "000625.SZ", "key": 5},
+                {"date": "2022-02-04 17:47:09", "source": "600066.SH", "target": "600166.SH", "key": 0},
+                {"date": "2022-02-04 17:47:09", "source": "600066.SH", "target": "600166.SH", "key": 1},
+                {"date": "2022-02-06 05:37:49", "source": "600066.SH", "target": "600166.SH", "key": 2},
+                {"date": "2022-02-06 05:37:49", "source": "600066.SH", "target": "600166.SH", "key": 3},
+                {"date": "2022-02-06 05:48:12", "source": "600066.SH", "target": "600166.SH", "key": 4},
+                {"date": "2022-02-06 05:48:12", "source": "600066.SH", "target": "600166.SH", "key": 5},
+                {"date": "2022-02-06 11:11:06", "source": "600066.SH", "target": "600166.SH", "key": 6},
+                {"date": "2022-02-06 11:11:06", "source": "600066.SH", "target": "600166.SH", "key": 7},
+                {"date": "2022-02-10 23:57:14", "source": "600066.SH", "target": "601231.SH", "key": 0},
+                {"date": "2022-02-10 23:57:14", "source": "600066.SH", "target": "601231.SH", "key": 1},
+                {"date": "2022-02-15 14:27:00", "source": "600066.SH", "target": "301020", "key": 0},
+                {"date": "2022-02-15 14:27:00", "source": "600066.SH", "target": "301020", "key": 1},
+                {"date": "2022-02-15 14:28:07", "source": "600066.SH", "target": "301020", "key": 2},
+                {"date": "2022-02-15 14:28:07", "source": "600066.SH", "target": "301020", "key": 3},
+                {"date": "2022-02-15 14:50:59", "source": "600066.SH", "target": "301020", "key": 4},
+                {"date": "2022-02-15 14:50:59", "source": "600066.SH", "target": "301020", "key": 5},
+                {"date": "2022-02-15 14:52:15", "source": "600066.SH", "target": "301020", "key": 6},
+                {"date": "2022-02-15 14:52:15", "source": "600066.SH", "target": "301020", "key": 7}]
+
+            function update_old() {
+                d3.select("#old_graph1").remove();
+                var days = document.getElementById("form_days").value;
+                if(days==="one week"){
+                    var links = one_week_old_links.map((item)=>{
+                        return {
+                            source: item.source,
+                            target: item.target,
+                        }
+                    });
+                    window.open("1-week-result.html",'newWindow')
+                    
+                }else {
+                    var links = two_week_old_links.map((item)=>{
+                        return {
+                            source: item.source,
+                            target: item.target,
+                        }
+                    });
+                    window.open("2-week-result.html",'newWindow')
+                    
+                }
+                console.log("after",links)
+
+                var nodes = {};
+
+                links.forEach(function(link)
+                {
+                    link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+                    link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+                });
+
+
+                var width = document.querySelector('#old_graph').clientWidth, height = document.querySelector('#old_graph').clientHeight;
+
+                var force = d3.layout.force()
+                    .nodes(d3.values(nodes))
+                    .links(links)
+                    .size([width, height])
+                    .linkDistance(20)
+                    .charge(-1500)
+                    .on("tick", tick)
+                    .start();
+
+
+                var svg = d3.select("#old_graph").append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("id","old_graph1");
+
+                var marker=
+                    svg.append("marker")
+                        .attr("id", "resolved")
+                        .attr("markerUnits","userSpaceOnUse")
+                        .attr("viewBox", "0 -5 10 10")
+                        .attr("refX",32)
+                        .attr("refY", -1)
+                        .attr("markerWidth", 12)
+                        .attr("markerHeight", 12)
+                        .attr("orient", "auto")
+                        .attr("stroke-width",2)
+                        .append("path")
+                        .attr("d", "M0,-5L10,0L0,5")
+                        .attr('fill','#000000');
+
+                var edges_line = svg.selectAll(".edgepath")
+                    .data(force.links())
+                    .enter()
+                    .append("path")
+                    .attr({
+                        'd': function(d) {return 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y},
+                        'class':'edgepath',
+                        'id':function(d,i) {return 'edgepath'+i;}})
+                    .style("stroke",function(d){
+                        var lineColor;
+                        lineColor="#B43232";
+                        return lineColor;
+                    })
+                    .style("pointer-events", "none")
+                    .style("stroke-width",0.5)
+                    .attr("marker-end", "url(#resolved)" );
+
+                var circle = svg.append("g").selectAll("circle")
+                    .data(force.nodes())
+                    .enter().append("circle")
+                    .style("fill",function(node){
+                        var color;
+                        var link=links[node.index];
+                        color="#F9EBF9";
+                        return color;
+                    })
+                    .style('stroke',function(node){
+                        var color;
+                        var link=links[node.index];
+                        color="#A254A2";
+                        return color;
+                    })
+                    .attr("r", 10)
+                    .on("click",function(node)
+                    {
+                        edges_line.style("stroke-width",function(line){
+                            if(line.source.name==node.name || line.target.name==node.name){
+                                return 1;
+                            }else{
+                                return 0.5;
+                            }
+                        });
+                    })
+                    .call(force.drag);
+
+
+                var text = svg.append("g").selectAll("text")
+                    .data(force.nodes())
+                    .enter()
+                    .append("text")
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", 10)
+                    .style('fill',function(node){
+                        var color;
+                        var link=links[node.index];
+                        color="#A254A2";
+                        return color;
+                    }).attr('x',function(d){
+                        var re_en = /[a-zA-Z]+/g;
+                        if(d.name.match(re_en)){
+                            d3.select(this).append('tspan')
+                                .attr('x',0)
+                                .attr('y',2)
+                                .text(function(){return d.name;});
+                        }
+
+                        else if(d.name.length<=4){
+                            d3.select(this).append('tspan')
+                                .attr('x',0)
+                                .attr('y',2)
+                                .text(function(){return d.name;});
+                        }else{
+                            var top=d.name.substring(0,4);
+                            var bot=d.name.substring(4,d.name.length);
+
+                            d3.select(this).text(function(){return '';});
+
+                            d3.select(this).append('tspan')
+                                .attr('x',0)
+                                .attr('y',-7)
+                                .text(function(){return top;});
+
+                            d3.select(this).append('tspan')
+                                .attr('x',0)
+                                .attr('y',10)
+                                .text(function(){return bot;});
+                        }
+                    });
+
+                function tick() {
+                    circle.attr("transform", transform1);
+                    text.attr("transform", transform2);
+
+                    edges_line.attr('d', function(d) {
+                        var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
+                        return path;
+                    });
+                }
+
+                function linkArc(d) {
+                    return 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y
+                }
+
+                function transform1(d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                }
+                function transform2(d) {
+                    return "translate(" + (d.x) + "," + d.y + ")";
+                }
+            }
+
+            function update_new() {
+                d3.select("#new_graph1").remove();
+                var days = document.getElementById("form_days").value;
+                if(days==="one week"){
+                    var links = one_week_new_links.map((item)=>{
+                        return {
+                            source: item.source,
+                            target: item.target,
+                        }
+                    });
+                }else {
+                    var links = two_week_new_links.map((item)=>{
+                        return {
+                            source: item.source,
+                            target: item.target,
+                        }
+                    });
+                }
+                console.log("after",links)
+
+                var nodes = {};
+
+                links.forEach(function(link)
+                {
+                    link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+                    link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+                });
+
+
+                var width = document.querySelector('#new_graph').clientWidth, height = document.querySelector('#new_graph').clientHeight;
+
+                var force = d3.layout.force()
+                    .nodes(d3.values(nodes))
+                    .links(links)
+                    .size([width, height])
+                    .linkDistance(5)
+                    .charge(-1500)
+                    .on("tick", tick)
+                    .start();
+
+
+                var svg = d3.select("#new_graph").append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("id","new_graph1");
+
+                var marker=
+                    svg.append("marker")
+                        .attr("id", "resolved")
+                        .attr("markerUnits","userSpaceOnUse")
+                        .attr("viewBox", "0 -5 10 10")
+                        .attr("refX",32)
+                        .attr("refY", -1)
+                        .attr("markerWidth", 12)
+                        .attr("markerHeight", 12)
+                        .attr("orient", "auto")
+                        .attr("stroke-width",2)
+                        .append("path")
+                        .attr("d", "M0,-5L10,0L0,5")
+                        .attr('fill','#000000');
+
+                var edges_line = svg.selectAll(".edgepath")
+                    .data(force.links())
+                    .enter()
+                    .append("path")
+                    .attr({
+                        'd': function(d) {return 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y},
+                        'class':'edgepath',
+                        'id':function(d,i) {return 'edgepath'+i;}})
+                    .style("stroke",function(d){
+                        var lineColor;
+                        lineColor="#B43232";
+                        return lineColor;
+                    })
+                    .style("pointer-events", "none")
+                    .style("stroke-width",0.5)
+                    .attr("marker-end", "url(#resolved)" );
+
+                var circle = svg.append("g").selectAll("circle")
+                    .data(force.nodes())
+                    .enter().append("circle")
+                    .style("fill",function(node){
+                        var color;
+                        var link=links[node.index];
+                        color="#F9EBF9";
+                        return color;
+                    })
+                    .style('stroke',function(node){
+                        var color;
+                        var link=links[node.index];
+                        color="#A254A2";
+                        return color;
+                    })
+                    .attr("r", 10)
+                    .on("click",function(node)
+                    {
+                        edges_line.style("stroke-width",function(line){
+                            if(line.source.name==node.name || line.target.name==node.name){
+                                return 1;
+                            }else{
+                                return 0.5;
+                            }
+                        });
+                    })
+                    .call(force.drag);
+
+
+                var text = svg.append("g").selectAll("text")
+                    .data(force.nodes())
+                    .enter()
+                    .append("text")
+                    .attr("font-size", 10)
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "middle")
+                    .style('fill',function(node){
+                        var color;
+                        var link=links[node.index];
+                        color="#A254A2";
+                        return color;
+                    }).attr('x',function(d){
+                        var re_en = /[a-zA-Z]+/g;
+                        if(d.name.match(re_en)){
+                            d3.select(this).append('tspan')
+                                .attr('x',0)
+                                .attr('y',2)
+                                .text(function(){return d.name;});
+                        }
+
+                        else if(d.name.length<=4){
+                            d3.select(this).append('tspan')
+                                .attr('x',0)
+                                .attr('y',2)
+                                .text(function(){return d.name;});
+                        }else{
+                            var top=d.name.substring(0,4);
+                            var bot=d.name.substring(4,d.name.length);
+
+                            d3.select(this).text(function(){return '';});
+
+                            d3.select(this).append('tspan')
+                                .attr('x',0)
+                                .attr('y',-7)
+                                .text(function(){return top;});
+
+                            d3.select(this).append('tspan')
+                                .attr('x',0)
+                                .attr('y',10)
+                                .text(function(){return bot;});
+                        }
+                    });
+
+                function tick() {
+                    circle.attr("transform", transform1);
+                    text.attr("transform", transform2);
+
+                    edges_line.attr('d', function(d) {
+                        var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
+                        return path;
+                    });
+                }
+
+                function linkArc(d) {
+                    return 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y
+                }
+
+                function transform1(d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                }
+                function transform2(d) {
+                    return "translate(" + (d.x) + "," + d.y + ")";
+                }
+            }
+
+            function updateWeek(message){
+                update_old()
+                update_new()
+            }
+
+            function submit(message){
+                var stock = document.getElementById("form_stock").value;
+                var method = document.getElementById("form_model").value;
+                var start_time = document.getElementById("form_start_time").value;
+                var end_time = document.getElementById("form_end_time").value;
+
+                let demo = document.querySelector('.demo')
+                console.log(demo.classList)
+                demo.classList.remove('demo_hidden')
+                demo.classList.add('demo_active')
+                $.ajax({
+                    type:'GET',
+                    url:'http://143.89.126.53:8001/api/predict',
+                    data:{
+                        stock: stock,
+                        method: method,
+                        end_time: end_time,
+                        start_time:start_time,
+                    },
+                    success:function (res){
+                        console.log(res)
+                        let demo = document.querySelector('.demo')
+                        demo.classList.remove('demo_active')
+                        demo.classList.add('demo_hidden')
+                        const blob = new Blob([ res ], { type: 'text/html' })
+                        const objectURL = URL.createObjectURL(blob)
+
+                        const anchor = document.createElement('a')
+                        anchor.href = objectURL
+                        anchor.download = "result.html"
+
+                        anchor.click()
+                        console.log(objectURL)
+                        URL.revokeObjectURL(objectURL)
+                    }
+                }).fail(function (result){
+                    alert("Backtest failed, please check stock input and format！")
+                    let demo = document.querySelector('.demo')
+                    demo.classList.remove('demo_active')
+                    demo.classList.add('demo_hidden')
+                })
+
+            }
+
+
+        </script>
+    </body>
+    <script>
+        window.onload = ()=>{
+            let theadArr = document.getElementsByTagName('th')
+            console.log(theadArr)
+            for(let i =0;i<theadArr.length;i++){
+                theadArr[i].classList.add('test')
+            }
+        }
+    </script>
+
+    <div id="preloader_1" class="demo demo_hidden">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</html>
+
+<style>
+    .test {
+        border: 1px solid gray;
+    }
+    .demo {
+        height: 200px;
+        width: 200px;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .demo_hidden {
+        display: none;
+    }
+    .demo_active {
+        display: block;
+        animation: show 0.2s linear;
+    }
+
+    #preloader_1{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+    }
+    #preloader_1 span{
+        display:block;
+        bottom:0px;
+        width: 9px;
+        height: 5px;
+        background:#9b59b6;
+        position:absolute;
+        animation: preloader_1 1.5s  infinite ease-in-out;
+    }
+    #preloader_1 span:nth-child(2){
+        left:11px;
+        animation-delay: .2s;
+    }
+    #preloader_1 span:nth-child(3){
+        left:22px;
+        animation-delay: .4s;
+    }
+    #preloader_1 span:nth-child(4){
+        left:33px;
+        animation-delay: .6s;
+    }
+    #preloader_1 span:nth-child(5){
+        left:44px;
+        animation-delay: .8s;
+    }
+    @keyframes preloader_1 {
+        0% {height:5px;transform:translateY(0px);background:#9b59b6;}
+        25% {height:30px;transform:translateY(15px);background:#3498db;}
+        50% {height:5px;transform:translateY(0px);background:#9b59b6;}
+        100% {height:5px;transform:translateY(0px);background:#9b59b6;}
+    }
+
+    @keyframes show {
+        0%{
+            opacity: 0;
+            transform: scale(0);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>

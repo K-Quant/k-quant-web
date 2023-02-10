@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8"/>
+  <style>* { margin: 0; padding: 0; } .container { height: 70px; width: 50%; margin: 100px auto 0 auto; } .parent { position: relative; } .search { width: 100%; height: 40px; border-radius: 18px; outline: none; border: 1px solid #ccc; padding-left: 20px; position: absolute; } .button { height: 35px; width: 35px; position: absolute;  /* background: url("./images/topbar.png") no-repeat -2px -99px; */ background: url("./images/search.png") no-repeat center center; background-size: 100% 100%;  /* background: #CCC no-repeat -2px -99px; */ top: 4px;  /* left: 285px; */ right: 0px;  /* left: 500px; */ border: none; outline: none; cursor: pointer; }</style>
+  <link href="../bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="../blocks.css"/>
+  <link href="../style.css" rel="stylesheet"/>
+  <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <title>K-Quant</title>
+</head>
+<nav class="bg-dark border-1 navbar navbar-expand-lg navbar-light pb-3 pt-3 shadow-none text-muted">
+  <div class="border-dark bottom-0 container-sm end-0 start-0 top-0">
+    <a class="align-items-center d-inline-flex fw-bold h4 lh-1 mb-0 navbar-brand text-secondary text-uppercase" href="#">
+      <img src="../UST.jpg" width="30" class="bg-light"/><span class="text-white">&nbsp;K-QUANT HKUST</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown-2" aria-controls="navbarNavDropdown-2" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown-2">
+      <ul class="ms-auto navbar-nav">
+        <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" aria-current="page" href="../fintech.html">Home</a>
+        </li>
+        <li class="nav-item"> <a class="active nav-link p-lg-3 text-white" href="./kgQuery.html">FinKG Query</a>
+        </li>
+        <li class="nav-item"> <a class="active nav-link p-lg-3 text-white-50" href="./demo.html">FinKG Update</a>
+        </li>
+        <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="../datasource.html">Data Sources</a>
+        </li>
+        <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="http://143.89.126.53:8001/docs">APIs</a>
+        </li>
+        <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="../demo.html">K-Quant</a>
+        </li>
+        <li class="nav-item"> <a class="nav-link p-lg-3 text-white-50" href="../future.html">More Information</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<body>
+<div class="container pb-5 " id = "kg-page" style="height: 100%;margin-top: 20px">
+  <div class="container">
+    <div class="align-items-center mb-3 row">
+      <div class="col-lg-7">
+        <h2 class="h6 text-primary">Our Process</h2>
+        <h3 class="fw-bold h2 mb-1 text-black-50">Knowledge Graph</h3>
+      </div>
+      <!--                    <div class="align-items-center row"> -->
+      <!--                        <div class="col-lg-6 pb-3 pt-3 text-center"> -->
+      <!--                            <img src="short%20term.jpg" class="img-fluid"/> -->
+      <!--                        </div>                         -->
+      <!--                        <div class="col-lg-5 me-auto ms-auto pb-3 pt-3"> -->
+      <!--                            <p class="fw-light mb-4"></p> -->
+      <!--                        </div>                         -->
+      <!--                    </div>                     -->
+      <div class="align-items-center justify-content-center row">
+        <div class="col-lg-3 col-sm-6 pb-3 pt-3">
+          <div class="d-flex">
+            <div>
+              <h2 class="display-5 fw-bold text-primary">30,000+</h2>
+              <p class="mb-0 text-black-50">Entities</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 pb-3 pt-3">
+          <div class="d-flex">
+            <div>
+              <h2 class="display-5 fw-bold text-primary">20+</h2>
+              <p class="mb-0 text-black-50">Relations</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 pb-3 pt-3">
+          <div class="d-flex">
+            <div>
+              <h2 class="display-5 fw-bold text-primary">4,000+</h2>
+              <p class="mb-0 text-black-50">Short term Events</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 pb-3 pt-3">
+          <div class="d-flex">
+            <div>
+              <h2 class="display-5 fw-bold text-primary">10+</h2>
+              <p class="mb-0 text-black-50">High-frequency Events</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <br/>
+    </div>
+
+    <div>
+      <form action="" class="parent">
+        <input type="text" class="form-control" style="display: none;"/>
+        Please choose a relation<br/>
+        <select class="form-control" id="rela" placeholder="Type to search...">
+          <option value="all">all</option>
+          <option value="SW belongs to">SW belongs to</option>
+          <option value="managed by">managed by</option>
+          <option value="company locate in city">company locate in city</option>
+          <option value="work for">work for</option>
+          <option value="hold">hold</option>
+          <option value="same industry">same industry</option>
+          <option value="rise">rise</option>
+          <option value="compete">compete</option>
+          <option value="cooperate">cooperate</option>
+          <option value="increase holding">increase holding</option>
+          <option value="fall">fall</option>
+          <option value="supply">supply</option>
+          <option value="be reduced holding">be reduced holding</option>
+          <option value="be invested">be invested</option>
+          <option value="reduce holding">reduce holding</option>
+          <option value="superior">superior</option>
+          <option value="be increased holding">be increased holding</option>
+          <option value="subordinate">subordinate</option>
+          <option value="invest">invest</option>
+          <option value="dispute">dispute</option>
+          <option value="be supplied">be supplied</option>
+        </select>
+        Please input the search node<br/>
+        <input type="text" id="searchBar" class="search" placeholder="Search node" onkeydown="searchBarOnKeyDown(event)"/>
+        <a class="btn btn-primary ms-lg-3 pe-4 ps-4" id="btn" onclick="searchButtonOnClick()" style="position: relative;margin-top: 60px">Select</a>
+      </form>
+    </div>
+
+  </div>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="new_graph.js"></script>
+  <script src="render.js"></script>
+  <script src="callbacks.js"></script>
+</div>
+</body>
+</html>
