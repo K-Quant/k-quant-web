@@ -4,7 +4,7 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-<!--        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <meta name="description" content=""/>
         <meta name="author" content=""/>
         <!-- Bootstrap core CSS -->
@@ -32,7 +32,7 @@
                             </li>
                             <li class="nav-item"> <a class="nav-link p-lg-3" href="datasource.html">Data Sources</a> 
                             </li>
-                            <li class="nav-item"> <a class="nav-link p-lg-3" href="http://143.89.126.53:8001/docs">APIs</a>
+                            <li class="nav-item"> <a class="nav-link p-lg-3" href="https://143.89.126.53:8001/docs">APIs</a>
                     </li>
                             <li class="nav-item"> <a class="active nav-link p-lg-3" href="demo.html">K-Quant</a>
                         </li>
@@ -647,7 +647,7 @@
                 demo.classList.add('demo_active')
                 $.ajax({
                     type:'GET',
-                    url:'http://143.89.126.53:8001/api/predict',
+                    url:'https://143.89.126.53:8001/api/predict',
                     data:{
                         stock: stock,
                         method: method,
